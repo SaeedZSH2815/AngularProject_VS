@@ -7,17 +7,18 @@ import { AbpHttpInterceptor } from 'abp-ng2-module';
 import { UserLoginUseCase } from '../../features/domain/use-cases/user-login-use-case';
 
 
-//export const getUserLoginUseCaseFactory = (userRepository: IUserRepository) => new UserLoginUseCase(userRepository);
+export const getUserLoginUseCaseFactory = (userRepository: IUserRepository) => new UserLoginUseCase(userRepository);
 
-//export const getUserLoginUseCaseProvider = {
-//  provide: UserLoginUseCase,
-//  useFactory: getUserLoginUseCaseFactory,
-//}
+export const getUserLoginUseCaseProvider = {
+  provide: UserLoginUseCase,
+  useFactory: getUserLoginUseCaseFactory,
+  deps:[IUserRepository]
+}
 
 @NgModule({
   declarations: [],
   providers: [
-    //  getUserLoginUseCaseProvider,
+      getUserLoginUseCaseProvider,
    // UserRepository,
     { provide: IUserRepository, useClass: UserRepository },
     { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }

@@ -13,13 +13,13 @@ import { IUserRepository } from '../features/domain/repositories/iuser-repositor
 export class AppComponent {
   title = 'AngularProject_VS';
 
-  constructor(public us: IUserRepository) {
+  constructor(public us: IUserRepository, private c: UserLoginUseCase) {
     let au: AuthenticateModel = new AuthenticateModel();
     au.userNameOrEmailAddress = "admin";
     au.password = "123qwe";
     console.log("dd");
-    this.us.Authenticate(au).pipe(RxJS.tap((r) => console.log(r))).subscribe();
-    //this.us.exceute(au).pipe().subscribe();
+    this.c.exceute(au).pipe(RxJS.tap((r) => console.log(r))).subscribe();
+    //this.c.exceute(au).pipe().subscribe();
 
   }
 
